@@ -17,6 +17,10 @@ export class TableComponent implements OnInit {
       this.getPeriodData(100, 1)
     ];
 
+    for (let i = 1; i < 5 ; i++) {
+      this.tableValues.push(this.getPeriodData(100, i))
+    }
+
     console.log('this.tableValues ', this.tableValues);
 
   }
@@ -36,10 +40,10 @@ export class TableComponent implements OnInit {
       return possibleEarnedSumm < 0 ? 0 : possibleEarnedSumm;
     })();
 
-    let warehouseSumm = ((period) => {
+    let warehouseInfo = ((period) => {
       switch (period) {
         case 1:
-          return 0;
+          return this.getWareHouseFork(price, 0, 21);
         case 2:
           return this.getWareHouseFork(price, 21, 40);
         case 3:
@@ -56,14 +60,16 @@ export class TableComponent implements OnInit {
       price: price,
       commission: commission,
       earned: earnedSumm,
-      warehouseSumm: warehouseSumm
+      warehouseInfo: warehouseInfo
     }
   }
 
   getWareHouseFork(price, dayStart, dayEnd){
     return {
+      dayStart: dayStart,
+      dayEnd: dayEnd,
       min: price * this.warehouseK * dayStart,
-      max: price * this.warehouseK * dayEnd,
+      max: dayStart === 0 ? 0 : price * this.warehouseK * dayEnd,
     };
   }
 

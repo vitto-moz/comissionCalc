@@ -2,13 +2,15 @@
   <tr>
     <th>Дней</th>
     <th>Цена продажи</th>
+    <th>Коммиссионные</th>
     <th>К выплате комитенту</th>
     <th>Плата за хранение</th>
   </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-    <td>Mexico</td>
+  <tr *ngFor="let periodValues of tableValues; let i = index">
+    <td>{{periodValues.warehouseInfo.dayStart + " - " + periodValues.warehouseInfo.dayEnd}}</td>
+    <td>{{periodValues.price}}</td>
+    <td>{{periodValues.commission}}</td>
+    <td>{{periodValues.earned}}</td>
+    <td>{{periodValues.warehouseInfo.min + " - " + periodValues.warehouseInfo.max}}</td>
   </tr>
 </table>
