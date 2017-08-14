@@ -12,8 +12,13 @@ export class CalculatorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
     this.calcForm = new FormGroup({
-      'neededSumm': new FormControl('', Validators.required),
+      'neededSumm': new FormControl('', [
+        Validators.required,
+        Validators.min(0),
+        Validators.pattern(new RegExp('^[0-9]+$')),
+      ])
     });
   }
 
