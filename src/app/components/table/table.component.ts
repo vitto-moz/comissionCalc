@@ -7,15 +7,13 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class TableComponent implements OnInit {
   @Input() neededSumm: number;
-  tableValues: any[];
-  warehouseK =  0.0005;
+  tableValues: any[] = [];
+  warehouseK: number =  0.0005;
+  price: number;
 
   constructor() { }
 
   ngOnInit() {
-    this.tableValues = [
-      this.getPeriodData(100, 1)
-    ];
 
     for (let i = 1; i < 5 ; i++) {
       this.tableValues.push(this.getPeriodData(100, i))
@@ -27,37 +25,51 @@ export class TableComponent implements OnInit {
 
   getPeriodData(summ, periodNumber){
 
-    let price =  summ / 0.6;
+    this.price =  ((period) => {
+      let initialPrice = summ / 0.6;
+      switch (period) {
+        case 1:
+          return initialPrice ;
+        case 2:
+          return initialPrice = initialPrice * 0.9;
+        case 3:
+          return initialPrice = initialPrice * 0.9 * 0.8;
+        case 4:
+          return initialPrice = initialPrice * 0.9 * 0.8 * 0.8;
+        case 5:
+          return initialPrice = initialPrice * 0.9 * 0.8 * 0.8;
+      }
+    })(periodNumber) ;
 
 
     let commission = (() => {
-      let posssibleCommission  = price * 0.4;
+      let posssibleCommission  = this.price * 0.4;
       return posssibleCommission < 49 ? 49 : posssibleCommission;
     })();
 
     let earnedSumm = (() => {
-      let possibleEarnedSumm = price - commission;
+      let possibleEarnedSumm = this.price - commission;
       return possibleEarnedSumm < 0 ? 0 : possibleEarnedSumm;
     })();
 
     let warehouseInfo = ((period) => {
       switch (period) {
         case 1:
-          return this.getWareHouseFork(price, 0, 21);
+          return this.getWareHouseFork(this.price, 0, 21);
         case 2:
-          return this.getWareHouseFork(price, 21, 40);
+          return this.getWareHouseFork(this.price, 21, 40);
         case 3:
-          return this.getWareHouseFork(price, 41, 60);
+          return this.getWareHouseFork(this.price, 41, 60);
         case 4:
-          return this.getWareHouseFork(price, 61, 80);
+          return this.getWareHouseFork(this.price, 61, 80);
         case 5:
-          return this.getWareHouseFork(price, 81, 100);
+          return this.getWareHouseFork(this.price, 81, 100);
       }
 
     })(periodNumber);
 
     return {
-      price: price,
+      price: this.price,
       commission: commission,
       earned: earnedSumm,
       warehouseInfo: warehouseInfo
