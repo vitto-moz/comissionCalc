@@ -1,0 +1,14 @@
+<form [formGroup]="calcForm" (ngSubmit)="onSubmit()">
+      <button type="submit"
+              class="fs-btn"
+              [disabled]="!calcForm.valid">
+        Save
+      </button>
+      <div class="form-group">
+        <label for="name">Желаемая сумма</label>
+        <input  type="text"
+                formControlName="name"
+                id="name"
+                class="form-control">
+      </div>
+</form>
