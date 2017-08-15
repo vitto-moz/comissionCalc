@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {TableService} from "../table/table.service";
 
 @Component({
   selector: 'app-calculator',
@@ -8,8 +9,9 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 })
 export class CalculatorComponent implements OnInit {
   calcForm: FormGroup;
+  neededSumm: number = 0;
 
-  constructor() { }
+  constructor( private tableService: TableService) { }
 
   ngOnInit() {
 
@@ -23,7 +25,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   onSubmit(){
-
+    this.tableService.neededSumm$.next(parseInt(this.calcForm.value.neededSumm));
   }
 
 }

@@ -6,12 +6,15 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
 import { TableComponent } from './components/table/table.component';
+import { TableService } from "./components/table/table.service";
+import { CustomCurrencyPipe } from './components/table/custom-currency.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculatorComponent,
-    TableComponent
+    TableComponent,
+    CustomCurrencyPipe
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,7 @@ import { TableComponent } from './components/table/table.component';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

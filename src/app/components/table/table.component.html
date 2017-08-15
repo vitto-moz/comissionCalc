@@ -8,9 +8,9 @@
   </tr>
   <tr *ngFor="let periodValues of tableValues; let i = index">
     <td>{{periodValues.warehouseInfo.dayStart + " - " + periodValues.warehouseInfo.dayEnd}}</td>
-    <td>{{periodValues.price}}</td>
-    <td>{{periodValues.commission}}</td>
-    <td>{{periodValues.earned}}</td>
-    <td>{{periodValues.warehouseInfo.min + " - " + periodValues.warehouseInfo.max}}</td>
+    <td>{{periodValues.price | customCurrency}}</td>
+    <td>{{periodValues.commission | customCurrency}}</td>
+    <td>{{periodValues.earned | customCurrency}}</td>
+    <td>{{periodValues.warehouseInfo.min | customCurrency}} - {{ periodValues.warehouseInfo.max | customCurrency}}</td>
   </tr>
 </table>

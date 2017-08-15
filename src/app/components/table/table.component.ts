@@ -1,26 +1,36 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, AfterViewInit} from '@angular/core';
+import {TableService} from "./table.service";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit {
   @Input() neededSumm: number;
   tableValues: any[] = [];
   warehouseK: number =  0.0005;
   price: number;
 
-  constructor() { }
+  constructor( private tableService: TableService) { }
 
   ngOnInit() {
 
+  }
+
+  ngAfterViewInit(){
+    this.tableService.neededSumm$.subscribe(
+      val => {
+        this.tableValues = [];
+        this.calculateTable(val);
+      }
+    );
+  }
+
+  calculateTable(neededSumm){
     for (let i = 1; i < 5 ; i++) {
-      this.tableValues.push(this.getPeriodData(100, i))
+      this.tableValues.push(this.getPeriodData(neededSumm, i))
     }
-
-    console.log('this.tableValues ', this.tableValues);
-
   }
 
   getPeriodData(summ, periodNumber){
