@@ -11,6 +11,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   tableValues: any[] = [];
   warehouseK: number =  0.0005;
   price: number;
+  showLoader: boolean = false;
 
   constructor( private tableService: TableService) { }
 
@@ -19,10 +20,17 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    this.tableService.neededSumm$.subscribe(
+    this.tableService.neededSumm$
+      .map(summ => {
+        this.showLoader = true;
+        return summ;
+      })
+      .delay(1000)
+      .subscribe(
       val => {
         this.tableValues = [];
         this.calculateTable(val);
+        this.showLoader = false;
       }
     );
   }

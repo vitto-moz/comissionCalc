@@ -6,11 +6,16 @@
     <th class="highlighted">До виплати комітенту, грн</th>
     <th>Плата за зберігання, грн</th>
   </tr>
-  <tr *ngFor="let periodValues of tableValues; let i = index">
+
+  <tr *ngFor="let periodValues of tableValues; let i = index" [hidden]="showLoader">
     <td>{{periodValues.warehouseInfo.dayStart + " - " + periodValues.warehouseInfo.dayEnd}}</td>
     <td>{{periodValues.price | customCurrency}}</td>
     <td>{{periodValues.commission | customCurrency}}</td>
     <td class="highlighted">{{periodValues.earned | customCurrency}}</td>
     <td>{{periodValues.warehouseInfo.min | customCurrency}} - {{ periodValues.warehouseInfo.max | customCurrency}}</td>
   </tr>
+
 </table>
+<div class="loader-wrap" *ngIf="showLoader">
+  <div class="loader"></div>
+</div>
