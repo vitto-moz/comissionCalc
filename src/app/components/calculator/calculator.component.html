@@ -1,17 +1,18 @@
 <form [formGroup]="calcForm" (ngSubmit)="onSubmit()">
 
-  <div class="form-group">
-    <label for="neededSumm">Желаемая сумма</label>
+  <div class="form-wrap">
+    <label for="neededSumm">Бажана сума, грн: </label>
     <input  type="text"
             formControlName="neededSumm"
             id="neededSumm"
-            class="form-control">
+            class="summ-input">
+
+    <button type="submit"
+            class="fs-btn"
+            [disabled]="!calcForm.valid">
+      Розрахувати
+    </button>
   </div>
-  <button type="submit"
-          class="fs-btn"
-          [disabled]="!calcForm.valid">
-    Рассчитать
-  </button>
   <app-table [neededSumm]="neededSumm"></app-table>
 
 </form>

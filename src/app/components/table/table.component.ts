@@ -65,7 +65,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     let warehouseInfo = ((period) => {
       switch (period) {
         case 1:
-          return this.getWareHouseFork(this.price, 0, 21);
+          return this.getWareHouseFork(this.price, 1, 20);
         case 2:
           return this.getWareHouseFork(this.price, 21, 40);
         case 3:
@@ -90,8 +90,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     return {
       dayStart: dayStart,
       dayEnd: dayEnd,
-      min: price * this.warehouseK * dayStart,
-      max: dayStart === 0 ? 0 : price * this.warehouseK * dayEnd,
+      min: dayStart === 1 ? 0 : price * this.warehouseK * dayStart,
+      max: dayStart === 1 ? 0 : price * this.warehouseK * dayEnd,
     };
   }
 

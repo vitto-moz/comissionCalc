@@ -1,16 +1,16 @@
 <table>
   <tr>
-    <th>Дней</th>
-    <th>Цена продажи</th>
-    <th>Коммиссионные</th>
-    <th>К выплате комитенту</th>
-    <th>Плата за хранение</th>
+    <th>Днів</th>
+    <th>Ціна продажу, грн</th>
+    <th>Комісійна винагорода, грн</th>
+    <th class="highlighted">До виплати комітенту, грн</th>
+    <th>Плата за зберігання, грн</th>
   </tr>
   <tr *ngFor="let periodValues of tableValues; let i = index">
     <td>{{periodValues.warehouseInfo.dayStart + " - " + periodValues.warehouseInfo.dayEnd}}</td>
     <td>{{periodValues.price | customCurrency}}</td>
     <td>{{periodValues.commission | customCurrency}}</td>
-    <td>{{periodValues.earned | customCurrency}}</td>
+    <td class="highlighted">{{periodValues.earned | customCurrency}}</td>
     <td>{{periodValues.warehouseInfo.min | customCurrency}} - {{ periodValues.warehouseInfo.max | customCurrency}}</td>
   </tr>
 </table>

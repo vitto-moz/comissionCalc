@@ -1,0 +1,21 @@
+.summ-input {
+  width: 100px;
+  padding: 8px;
+  border-radius: 7px;
+  border: 1px solid;
+}
+
+.fs-btn {
+  width: 125px;
+  padding: 9px;
+  border-radius: 7px;
+  border: 1px solid;
+  background-color: #ed6332;
+  color: white;
+  text-transform: uppercase;
+}
+
+.form-wrap {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
