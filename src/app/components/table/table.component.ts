@@ -42,20 +42,21 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   getPeriodData(summ, periodNumber){
+    let initialPrice = summ / 0.6;
 
     this.price =  ((period) => {
-      let initialPrice = summ / 0.6;
+
       switch (period) {
         case 1:
           return initialPrice ;
         case 2:
-          return initialPrice = initialPrice * 0.9;
+          return initialPrice * 0.9;
         case 3:
-          return initialPrice = initialPrice * 0.9 * 0.8;
+          return initialPrice * 0.9 * 0.8;
         case 4:
-          return initialPrice = initialPrice * 0.9 * 0.8 * 0.8;
+          return initialPrice * 0.9 * 0.8 * 0.8;
         case 5:
-          return initialPrice = initialPrice * 0.9 * 0.8 * 0.8;
+          return initialPrice * 0.9 * 0.8 * 0.8;
       }
     })(periodNumber) ;
 
@@ -73,15 +74,15 @@ export class TableComponent implements OnInit, AfterViewInit {
     let warehouseInfo = ((period) => {
       switch (period) {
         case 1:
-          return this.getWareHouseFork(this.price, 1, 20);
+          return this.getWareHouseFork(initialPrice, 1, 20);
         case 2:
-          return this.getWareHouseFork(this.price, 21, 40);
+          return this.getWareHouseFork(initialPrice, 21, 40);
         case 3:
-          return this.getWareHouseFork(this.price, 41, 60);
+          return this.getWareHouseFork(initialPrice, 41, 60);
         case 4:
-          return this.getWareHouseFork(this.price, 61, 80);
+          return this.getWareHouseFork(initialPrice, 61, 80);
         case 5:
-          return this.getWareHouseFork(this.price, 81, 100);
+          return this.getWareHouseFork(initialPrice, 81, 100);
       }
 
     })(periodNumber);
